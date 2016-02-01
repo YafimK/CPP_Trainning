@@ -36,21 +36,45 @@ void LinkedList<N>::insertNode(N& newNodeValue)
 template <typename N>
 Node<N>& LinkedList<N>::findNode(N& searchValue)
 {
-	Node<N>& cursorNode = head;
-	while (cursorNode->getNextNode() != nullptr && cursorNode->getNodeValue() != searchValue)
+	Node<N> cursorNode = head;
+	while (cursorNode.getNextNode() != nullptr && cursorNode.getNodeValue() != searchValue)
 	{
-		cursorNode = cursorNode->getNextNode();
+		cursorNode = cursorNode.getNextNode();
 	}
 	return cursorNode;
 }
 
 template <typename N>
-void LinkedList<N>::removeSpecificNode(N& searchValue)
+bool LinkedList<N>::removeSpecificNode(const N& deleteTarget)
 {
-	Node<N>& targetNode = findLastNode(searchValue);
-	//TODO: complete this
+	Node<N> cursorNode = this.head;
 
-	listSize--;
+	if(head != nullptr)
+	{
+		if(head->getNodeValue() == deleteTarget)
+		{
+			head = cursorNode.getNextNode();
+			listSize--;
+			return true;
+		}
+	}
+	else
+	{
+		while(cursorNode.getNextNode() != nullptr)
+		{
+			if(cursorNode.getNextNode().getNodeValue() == deleteTarget)
+			{
+				cursorNode.setNextNode(cursorNode.getNextNode());
+				delete cursorNode.getNextNode();
+				listSize--;
+				return true;
+			}
+			cursorNode = cursorNode.getNextNode();
+		}
+	}
+
+
+	return false;
 }
 
 template <typename N>
@@ -76,6 +100,20 @@ void LinkedList<N>::insertNodeAtFront(const Node<N>& newNode)
 	head = newNode;
 
 	listSize++;
+}
+
+template <typename N>
+void LinkedList<N>::deleteList()
+{
+	Node<N>* tempNode = nullptr;
+	while(head != nullptr)
+	{
+		*tempNode = head;
+		head = head->getNextNode();
+		delete tempNode;
+	}
+	delete tempNode;
+	head = nullptr;
 }
 
 template <typename N>
