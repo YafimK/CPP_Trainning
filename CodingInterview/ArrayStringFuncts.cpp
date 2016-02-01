@@ -2,14 +2,12 @@
 #include <string>
 #include <complex>
 
-ArrayStringFuncts::ArrayStringFuncts()
-{
-}
+ArrayStringFuncts::ArrayStringFuncts() {}
 
 /*
 	reverses a string in-place iteravly.
 */
-void ArrayStringFuncts::stringReverse(std::string &trgString)
+void ArrayStringFuncts::stringReverse(std::string& trgString)
 {
 	int endRunner = trgString.size();
 	int runner = 0;
@@ -47,8 +45,8 @@ bool ArrayStringFuncts::uniqueStringCharCheck(std::string testString)
 		if (testStringLength == 0 || testString == "")
 		{
 			throw new std::exception("empty string");
-		}  
-		else if(testStringLength > 256)
+		}
+		else if (testStringLength > 256)
 		{
 			return false;
 		}
@@ -56,11 +54,11 @@ bool ArrayStringFuncts::uniqueStringCharCheck(std::string testString)
 		bool charArr[256];
 		int currCharAscii = 0;
 
-		for(std::string::iterator i = testString.begin(); i!=testString.end(); ++i)
+		for (std::string::iterator i = testString.begin(); i != testString.end(); ++i)
 		{
 			currCharAscii = int(*i);
-			
-			if(charArr[currCharAscii] == true)
+
+			if (charArr[currCharAscii] == true)
 			{
 				return false;
 			}
@@ -70,10 +68,8 @@ bool ArrayStringFuncts::uniqueStringCharCheck(std::string testString)
 			}
 		}
 	}
-	catch (std::exception e)
-	{
-		
-	}
+	catch (std::exception e) { }
 
 	return true;
 }
+

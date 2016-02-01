@@ -1,30 +1,21 @@
 #pragma once
-template<typename T>
+
+template <typename T>
 class Node
 {
 public:
 
-	Node<T>(T& value): nodeValue(value), next(nullptr)
-	{
+	Node(const T& value);
 
-	}
+	Node* getNextNode() const;
+	void setNextNode(Node<T>& nextNode);
+	void setNodeValue(const T& newValue);
+	const T& getNodeValue() const;
 
-	Node<T>& getNextNode() const
-	{
-		return next;
-	}
-
-	void setNextNode(Node<T>& nextNode) const
-	{
-		next = nextNode;
-	}
-
-	T& getNodeValue() const
-	{
-		return nodeValue;
-	}
+	~Node() {}
 
 private:
 	Node& next;
 	T nodeValue;
 };
+
