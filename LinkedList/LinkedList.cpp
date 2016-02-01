@@ -17,7 +17,7 @@ void LinkedList<N>::insertNode(const Node<N>& newNode)
 	if (head != nullptr)
 	{
 		Node<N>& targetNode = findLastNode();
-		targetNode.setNextNode(newNode);
+		targetNode.setNext(newNode);
 	}
 	else
 	{
@@ -37,9 +37,9 @@ template <typename N>
 Node<N>& LinkedList<N>::findNode(N& searchValue)
 {
 	Node<N> cursorNode = head;
-	while (cursorNode.getNextNode() != nullptr && cursorNode.getNodeValue() != searchValue)
+	while (cursorNode.getNext() != nullptr && cursorNode.getValue() != searchValue)
 	{
-		cursorNode = cursorNode.getNextNode();
+		cursorNode = cursorNode.getNext();
 	}
 	return cursorNode;
 }
@@ -51,25 +51,25 @@ bool LinkedList<N>::removeSpecificNode(const N& deleteTarget)
 
 	if(head != nullptr)
 	{
-		if(head->getNodeValue() == deleteTarget)
+		if(head->getValue() == deleteTarget)
 		{
-			head = cursorNode.getNextNode();
+			head = cursorNode.getNext();
 			listSize--;
 			return true;
 		}
 	}
 	else
 	{
-		while(cursorNode.getNextNode() != nullptr)
+		while(cursorNode.getNext() != nullptr)
 		{
-			if(cursorNode.getNextNode().getNodeValue() == deleteTarget)
+			if(cursorNode.getNext().getValue() == deleteTarget)
 			{
-				cursorNode.setNextNode(cursorNode.getNextNode());
-				delete cursorNode.getNextNode();
+				cursorNode.setNext(cursorNode.getNext());
+				delete cursorNode.getNext();
 				listSize--;
 				return true;
 			}
-			cursorNode = cursorNode.getNextNode();
+			cursorNode = cursorNode.getNext();
 		}
 	}
 
@@ -83,7 +83,7 @@ Node<N>& LinkedList<N>::findLastNode()
 	Node<N>* cursorNode = head;
 	while (cursorNode->next != nullptr)
 	{
-		cursorNode = cursorNode->getNextNode();
+		cursorNode = cursorNode->getNext();
 	}
 	delete cursorNode;
 	return cursorNode;
@@ -94,7 +94,7 @@ void LinkedList<N>::insertNodeAtFront(const Node<N>& newNode)
 {
 	if (head != nullptr)
 	{
-		newNode.setNextNode(this->head);
+		newNode.setNext(this->head);
 	}
 
 	head = newNode;
@@ -108,12 +108,18 @@ void LinkedList<N>::deleteList()
 	Node<N>* tempNode = nullptr;
 	while(head != nullptr)
 	{
-		*tempNode = head;
-		head = head->getNextNode();
-		delete tempNode;
+		*tempNode = head->getNext();
+		delete head;
+		head = tempNode;
 	}
 	delete tempNode;
 	head = nullptr;
+}
+
+template <typename N>
+LinkedList<N>::~LinkedList()
+{
+	deleteList();
 }
 
 template <typename N>

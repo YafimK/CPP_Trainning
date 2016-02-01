@@ -1,5 +1,6 @@
-#include <iostream>
-#include "LinkedList.h"
 
-int main(void) { }
 
+int main(void)
+{
+	
+}

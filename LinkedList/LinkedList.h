@@ -17,6 +17,7 @@ public:
 	void insertNodeAtFront(const N& newNodeValue);
 	void insertNodeAtFront(const Node<N>& newNode);
 	void deleteList();
+	~LinkedList();
 
 private:
 	int listSize = DEFAULT_LIST_SIZE;
