@@ -12,7 +12,8 @@ public:
 	~Stack();
 	void push(const T& item);
 	T* pop() const;
-
+	//TODO: Impl' copy, assignment and move constructor.
+	
 protected:
 	class StackItem
 	{
