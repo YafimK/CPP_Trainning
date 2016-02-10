@@ -14,6 +14,11 @@ class LinkedListAlgo
 	* from the start)
 	*/
 	static Node<T>* findMthToLastElemLineary(LinkedList<T>& targetList, int mthItemNumber);
+	/*
+	* it will be a turtle rabbit algo impl' in order to check if the list is cyclic
+	* This will take O(3N/2)->>O(N) at most
+	*/
+	static bool isListCyclic(LinkedList<T>& targetList);
 };
 
 template <typename T>
@@ -50,4 +55,28 @@ Node<T>* LinkedListAlgo<T>::findMthToLastElemLineary(LinkedList<T>& targetList, 
 	}
 	return mthNodePointer;
 
+}
+
+template <typename T>
+bool LinkedListAlgo<T>::isListCyclic(LinkedList<T>& targetList)
+{
+	if(targetList.getHeadNode()->getNextNode() == nullptr)
+	{
+		return false;
+	}
+	
+	Node<T>* turtuNode = targetList.getHeadNode();
+	Node<T>* rabbitNode = turtuNode->getNextNode();
+
+	while(rabbitNode != nullptr && rabbitNode->getNextNode() != nullptr)
+	{
+		if(turtuNode == rabbitNode)
+		{
+			return true;
+		}
+		turtuNode = turtuNode->getNextNode();
+		rabbitNode = rabbitNode->getNextNode()->getNextNode();
+	}
+
+	return false;
 }
