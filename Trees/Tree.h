@@ -6,24 +6,23 @@ template <class T>
 class Tree
 {
 public:
-	explicit Tree() = delete;
 	virtual ~Tree()
 	{
 		delete root;
 	}
 
-	Leaf<T>* getTreeRoot() const {
+	virtual Leaf<T>* getTreeRoot() const {
 		return this->root;
 	}
-	Leaf<T>* setTreeRoot(Leaf<T>* newRoot) {
-		return this->root = newRoot;
+	virtual void setTreeRoot(Leaf<T>* newRoot) {
+		 this->root = newRoot;
 	}
 
 	virtual void insert(const T& value) = 0;
+	int leavsCount = 0;
 
 private:
-	Leaf<T>* root;
-	int treeHeight;
-	int leavsCount;
+	Leaf<T>* root = nullptr;
+	int treeHeight = 0;
 };
 

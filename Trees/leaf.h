@@ -5,7 +5,7 @@ template <typename T>
 class Leaf
 {
 public:
-	explicit Leaf(Leaf<T>* newHead = nullptr,const T&  newLeafValue = DEFAULT_LEAF_VALUE, Leaf<T>* leafChildren = nullptr, Leaf<T>* leafHead = nullptr):val(newLeafValue), children(leafChildren), head(&newHead){}
+	explicit Leaf(Leaf<T>* newHead = nullptr,const T&  newLeafValue = DEFAULT_LEAF_VALUE, Leaf<T>* leafChildren = nullptr):val(newLeafValue), children(leafChildren), head(newHead){}
 
 	virtual ~Leaf()
 	{
@@ -17,7 +17,7 @@ public:
 	}
 	void setValue(const T& newValue)
 	{
-		val = newValue;
+		this.val = newValue;
 	}
 
 	virtual Leaf<T>* getChildren() = 0;
@@ -25,9 +25,22 @@ public:
 	{
 		head = &newHead;
 	};
-
+	void markVisited()
+	{
+		visited = true;
+	}
+	void markUnVisited()
+	{
+		
+		visited = false;
+	}
+	bool getVisitStat() const
+	{
+		return visited;
+	}
 private:
 	T val;
 	Leaf<T>* children;
 	Leaf<T>* head;
+	bool visited = false;
 };

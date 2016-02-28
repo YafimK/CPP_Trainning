@@ -2,18 +2,18 @@
 #include "leaf.h"
 
 template <typename T>
-class BstLeaf:Leaf<T>
+class BstLeaf:public Leaf<T>
 {
 public:
-	Leaf<T>* getChildren() override
+	BstLeaf<T>* getChildren() override
 	{
 		return bstLeafChildren;
 	};
 
-	explicit BstLeaf(BstLeaf<T>* headLeaf = nullptr,const T& leafValue = DEFAULT_LEAF_VALUE, BstLeaf<T>* lefLeaf = nullptr, BstLeaf<T>* righNode = nullptr) :leftLeaf(lefLeaf), rightLeaf(righNode), bstLeafChildren(leftLeaf, rightLeaf)
-	{
-		super(&headLeaf,leafValue, bstLeafChildren);
-	}
+	explicit BstLeaf(BstLeaf<T>* headLeaf = nullptr, const T& leafValue = DEFAULT_LEAF_VALUE, BstLeaf<T>* lefLeaf = nullptr, BstLeaf<T>* righNode = nullptr):
+		Leaf(headLeaf, leafValue, bstLeafChildren), leftLeaf(lefLeaf), rightLeaf(righNode), bstLeafChildren(nullptr)
+	{}
+
 	~BstLeaf()
 	{
 		//Validate the leafs aint empty
@@ -29,21 +29,21 @@ public:
 
 	BstLeaf<T>* getRightLeaf()
 	{
-		return getRightLeaf;
+		return rightLeaf;
 	}
 
 	void setleftLeaf(BstLeaf<T>* newLeaf)
 	{
-		leftLeaf = &newLeaf;
+		leftLeaf = newLeaf;
 	}
 
 	void setRightLeaf(BstLeaf<T>* newLeaf)
 	{
-		rightLeaf = &newLeaf;
+		rightLeaf = newLeaf;
 	}
 
 private:
 	BstLeaf<T> *leftLeaf, *rightLeaf;
-	BstLeaf<T> *bstLeafChildren[];
+	BstLeaf<T> *bstLeafChildren;
 };
 
