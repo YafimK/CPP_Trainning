@@ -152,9 +152,14 @@
     <ClCompile Include="LinkedListAlgos.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoubleLinkedListXor.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedListAlgo.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LinkedList.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

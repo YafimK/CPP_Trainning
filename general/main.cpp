@@ -3,6 +3,7 @@
 #include <stack>
 #include <stdlib.h>
 #include <math.h>
+#include <c++/bits/stl_algo.h>
 
 using std::cout;
 using std::endl;
@@ -50,19 +51,20 @@ public:
             {}
     ~Connection(){};
 
-    bool& getActive()
+    bool& isActive()
     {
         return active;
     }
 
-    int& getPriority()
+    const int& getPriority()
     {
         return priority;
     }
 
+
 private:
-    int priority;
-    bool active;
+    int priority = {};
+    bool active = {};
 };
 
 void conArraySlicer(Connection source[], Connection targetArr[], int startPoint = 0,  int cutSize=0)
@@ -81,7 +83,7 @@ Connection* connectionOrgenizer(Connection connArr[], int size) {
     }
     else if (size == 2)
     {
-        if (connArr[1].getActive() && connArr[2].getActive() )
+        if (connArr[1].isActive() && connArr[2].isActive() )
         {
             if (connArr[1].getPriority() < connArr[2].getPriority())
             {
@@ -91,11 +93,11 @@ Connection* connectionOrgenizer(Connection connArr[], int size) {
             }
             return connArr;
         }
-        else if(!connArr[1].getActive() && connArr[2].getActive())
+        else if(!connArr[1].isActive() && connArr[2].isActive())
         {
             return &connArr[2];
         }
-        else if(connArr[1].getActive() && !connArr[2].getActive())
+        else if(connArr[1].isActive() && !connArr[2].isActive())
         {
             return &connArr[1];
         }
@@ -222,15 +224,28 @@ int* dupArrCleaner(int workArr[], int& size)
         bucketArr[i] = true;
         bucketArr[workArr[i]]++;
     }
-    int result[size]={};
-    for(int j=0;j < size;j++)
-    {
-        if()
-        {
-            result[j] = workArr[]
-        }
+//    int result[size]={};
+//    for(int j=0;j < size;j++)
+//    {
+//        if()
+//        {
+//            result[j] = workArr[]
+//        }
 
-    }
+//    }
+    return nullptr;
+}
+
+bool isActive(Connection& testedCon)
+{
+    return !testedCon.isActive();
+}
+
+std::vector<Connection>& sortConnections(std::vector<Connection>& vec)
+{
+    vec.erase(std::remove_if(vec.begin(),vec.end(),isActive), vec.end());
+    std::sort(vec.begin(),vec.end(),[]( Connection& con1,  Connection& con2){return (con1.getPriority()<con2.getPriority());});
+    return vec;
 }
 
 //TODO: buffer compressor with sevral assupmtions (dict size 256)
@@ -238,6 +253,9 @@ int main(int argc, char* argv[]) {
     cout<<argc<<"-"<<argv[1]<<endl;
     int action = atoi(argv[1]);
    int res = 0;
+    std::vector<Connection> tempVec({Connection(true, 5), Connection(true, 4), Connection(false, 1), Connection(true, 9),
+                                     Connection(true, 3), Connection(false, 6), Connection(true, 0), Connection(true, 2)
+                                            , Connection(true, 7), Connection(true, 8)});
     switch(action)
     {
         case(1):
@@ -268,19 +286,29 @@ int main(int argc, char* argv[]) {
             break;
 
         case 6:
-            int g[]{5,6,7,8,1,9,1,10,1,4};
-            int size = 10;
-            int * result = dupArrCleaner(g, size);
-            for(int i=0; i<size;i++)
+//            int g[]{5,6,7,8,1,9,1,10,1,4};
+//            int size = 10;
+//            //int * result = dupArrCleaner(g, size);
+//            for(int i=0; i<size;i++)
+//            {
+//                cout<<result[i];
+//            }
+//            cout<<endl;
+            break;
+        case 7:
+            sortConnections(tempVec);
+            for(auto iter = tempVec.begin(); iter!=tempVec.end();iter++)
             {
-                cout<<result[i];
+                std::cout<<(*iter).getPriority()<<endl;
             }
-            cout<<endl;
+        std::cout<<"with functor"<<endl;
+        std::for_each(tempVec.begin(),tempVec.end(),[](Connection &con){ std::cout<<con.getPriority()<<endl;});
             break;
         default:
             cout<<"wrong action"<<endl;
+            break;
     }
-    cout<< res<<endl;
+    cout<<"result: "<<res<<endl;
 
     return 0;
 }

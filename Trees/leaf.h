@@ -19,6 +19,10 @@ public:
 	{
 		this.val = newValue;
 	}
+	Leaf<T>* getLeafHead()
+	{
+		return head;
+	}
 
 	virtual Leaf<T>* getChildren() = 0;
 	void setHead(Leaf<T>* newHead)

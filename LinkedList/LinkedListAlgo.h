@@ -19,6 +19,7 @@ class LinkedListAlgo
 	* This will take O(3N/2)->>O(N) at most
 	*/
 	static bool isListCyclic(LinkedList<T>& targetList);
+	
 };
 
 template <typename T>

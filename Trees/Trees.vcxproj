@@ -130,6 +130,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AvlTree.h" />
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="BstLeaf.h" />
     <ClInclude Include="leaf.h" />

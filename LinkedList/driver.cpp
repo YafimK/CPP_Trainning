@@ -2,6 +2,7 @@
 
 #include "LinkedList.h"
 #include "LinkedListAlgo.h"
+#include "DoubleLinkedListXor.h"
 #include <iostream>
 
 int main(void)
@@ -25,9 +26,25 @@ int main(void)
 	 //test the is linkedlist cyclic checker
 	bool tempTestResult = false;
 	tempTestResult = temp.isListCyclic(sample1);
-	std::cout<<"the list is cyclic: "<<tempTestResult;
+	std::cout<<"the list is cyclic: "<<tempTestResult<<std::endl;
 	Node<int>* tempCursorNode = sample1.findLastNode();
 	tempCursorNode->setNextNode(cursorNode);
 	tempTestResult = temp.isListCyclic(sample1);
-	std::cout<<"the list is cyclic: "<<temp.isListCyclic(sample1);
+	std::cout<<"the list is cyclic: "<<temp.isListCyclic(sample1) << std::endl;
+
+	//test the xor linked list
+	/* Create following Doubly Linked List
+	head-->40<-->30<-->20<-->10   */
+	Node<int> *head = NULL;
+	insertNode(&head, 10);
+	insertNode(&head, 20);
+	insertNode(&head, 30);
+	insertNode(&head, 40);
+
+	// print the created list
+	printXorLinkedList(head);
+
+
+	return 0;
+
 }

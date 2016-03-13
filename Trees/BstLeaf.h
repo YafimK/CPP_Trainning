@@ -11,7 +11,7 @@ public:
 	};
 
 	explicit BstLeaf(BstLeaf<T>* headLeaf = nullptr, const T& leafValue = DEFAULT_LEAF_VALUE, BstLeaf<T>* lefLeaf = nullptr, BstLeaf<T>* righNode = nullptr):
-		Leaf(headLeaf, leafValue, bstLeafChildren), leftLeaf(lefLeaf), rightLeaf(righNode), bstLeafChildren(nullptr)
+		Leaf<T>(headLeaf, leafValue, bstLeafChildren), leftLeaf(lefLeaf), rightLeaf(righNode), bstLeafChildren(nullptr)
 	{}
 
 	~BstLeaf()

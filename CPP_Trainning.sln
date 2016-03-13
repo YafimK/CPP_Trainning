@@ -69,11 +69,9 @@ Global
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug LinkedList|x64.ActiveCfg = Debug|x64
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug LinkedList|x64.Build.0 = Debug|x64
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug LinkedList|x86.ActiveCfg = Debug|Win32
-		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug LinkedList|x86.Build.0 = Debug|Win32
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug trees|x64.ActiveCfg = Debug trees|x64
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug trees|x64.Build.0 = Debug trees|x64
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug trees|x86.ActiveCfg = Debug trees|Win32
-		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug trees|x86.Build.0 = Debug trees|Win32
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug trees|x86.Deploy.0 = Debug trees|Win32
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug|x64.ActiveCfg = Debug|x64
 		{56C03FC9-7C3C-4813-9DCF-2CA6B0A376FD}.Debug|x64.Build.0 = Debug|x64

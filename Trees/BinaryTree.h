@@ -18,13 +18,16 @@ public:
 	{
 		for(const T& newLeaf: newLeafs)
 		{
-			insert(newLeaf);
+			BinaryTree<T>::insert(newLeaf);
 		}
 	}
 
-	BinaryTree<T>(T data[], const int size)
+	BinaryTree<T>(T (data)[], const int size)
 	{
-		balanceTree(data, 0, size-1);
+		for (int i = 0; i < size; i++)
+		{
+			BinaryTree<T>::insert(data[i]);
+		}
 	}
 
 	 ~BinaryTree()
@@ -34,11 +37,11 @@ public:
 	virtual void insert(const T& insertVal) override
 	{
 		
-		BstLeaf<T>* cursorPtr = getTreeRoot();
+		BstLeaf<T>* cursorPtr = dynamic_cast<BstLeaf<T>*>(Tree<T>::getTreeRoot());
 		BstLeaf<T>* tempPtrLeaf = nullptr;
 		while(cursorPtr != nullptr)
 		{
-			tempPtrLeaf = cursorPtr;
+			tempPtrLeaf = dynamic_cast<BstLeaf<T>*>(cursorPtr);
 			if(cursorPtr->getValue() == insertVal)
 			{
 				break;
@@ -74,7 +77,7 @@ public:
 
 	BstLeaf<T>* search(const T& searchVal)
 	{
-		BstLeaf<T>* cursor = getTreeRoot();
+		Leaf<T>* cursor = Tree<T>::getTreeRoot();
 		return search(cursor, searchVal);
 	}
 
@@ -102,7 +105,7 @@ public:
 	void breadthFirst()
 	{
 		std::queue<BstLeaf<T>*> leafQueue;
-		BstLeaf<T>* cursor = getTreeRoot();
+		BstLeaf<T>* cursor = dynamic_cast<BstLeaf<T>*>(Tree<T>::getTreeRoot());
 		if(cursor != nullptr)
 		{
 			leafQueue.push(cursor);
@@ -128,31 +131,12 @@ public:
 	}
 	void depthFirst()
 	{
-		dft(getTreeRoot());
+		dft(dynamic_cast<BstLeaf<T>*>((Tree<T>::getTreeRoot())));
 		std::cout << std::endl;
 	}
 
-	virtual BstLeaf<T>* getTreeRoot()
-	{
-		return this->root;
-	}
-	virtual void setTreeRoot(BstLeaf<T>* newRoot)
-	{
-		 this->root = newRoot;
-	}
-
 private:
-	void balanceTree(T data[], int first, int last)
-	{
-		if(first<=last)
-		{
-			int middle = (first + last) / 2;
-			std::cout << data[middle] << std::endl;
-			insert(data[middle]);
-			balanceTree(data, first, middle-1);
-			balanceTree(data, middle + 1, last);
-		}
-	}
+
 	void dft(BstLeaf<T>* cursor)
 	{
 		if (cursor)
@@ -163,5 +147,4 @@ private:
 		}
 		
 	}
-	BstLeaf<T>* root = nullptr;
 };
